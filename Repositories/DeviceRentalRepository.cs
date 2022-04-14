@@ -15,7 +15,7 @@ namespace DeviceRental.Repositories
 
     public class DeviceRentalRepository : RepositoryBase<Models.DeviceRental>, IDeviceRentalRepository
     {
-        public ApplicationDbContext DbContext { get => base.DbContext; }
+        public new ApplicationDbContext DbContext { get => base.DbContext; }
         public DeviceRentalRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }

@@ -23,7 +23,10 @@ namespace DeviceRental
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Container = ConfigAutofac();
-            Application.Run(new MainMenu(Container.Resolve<IDeviceRentalRepository>(), Container.Resolve<IUnitOfWork>()));
+            Application.Run(new MainMenu(Container.Resolve<IDeviceRentalRepository>(),
+                Container.Resolve<IEmployeeRepository>(),
+                Container.Resolve<IDeviceRepository>(),
+                Container.Resolve<IUnitOfWork>()));
         }
 
         static IContainer ConfigAutofac()

@@ -36,9 +36,15 @@ namespace DeviceRental
             this.dgvDeviceRental = new System.Windows.Forms.DataGridView();
             this.tabEmployee = new System.Windows.Forms.TabPage();
             this.tabDevice = new System.Windows.Forms.TabPage();
+            this.dgvEmployee = new System.Windows.Forms.DataGridView();
+            this.dgvDevice = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabDeviceRental.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeviceRental)).BeginInit();
+            this.tabEmployee.SuspendLayout();
+            this.tabDevice.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDevice)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -81,6 +87,7 @@ namespace DeviceRental
             // 
             // tabEmployee
             // 
+            this.tabEmployee.Controls.Add(this.dgvEmployee);
             this.tabEmployee.Location = new System.Drawing.Point(4, 22);
             this.tabEmployee.Name = "tabEmployee";
             this.tabEmployee.Padding = new System.Windows.Forms.Padding(3);
@@ -91,12 +98,33 @@ namespace DeviceRental
             // 
             // tabDevice
             // 
+            this.tabDevice.Controls.Add(this.dgvDevice);
             this.tabDevice.Location = new System.Drawing.Point(4, 22);
             this.tabDevice.Name = "tabDevice";
             this.tabDevice.Size = new System.Drawing.Size(767, 399);
             this.tabDevice.TabIndex = 2;
             this.tabDevice.Text = "Device";
             this.tabDevice.UseVisualStyleBackColor = true;
+            // 
+            // dgvEmployee
+            // 
+            this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployee.Location = new System.Drawing.Point(7, 7);
+            this.dgvEmployee.MultiSelect = false;
+            this.dgvEmployee.Name = "dgvEmployee";
+            this.dgvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEmployee.Size = new System.Drawing.Size(754, 318);
+            this.dgvEmployee.TabIndex = 0;
+            // 
+            // dgvDevice
+            // 
+            this.dgvDevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDevice.Location = new System.Drawing.Point(3, 3);
+            this.dgvDevice.MultiSelect = false;
+            this.dgvDevice.Name = "dgvDevice";
+            this.dgvDevice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDevice.Size = new System.Drawing.Size(761, 306);
+            this.dgvDevice.TabIndex = 0;
             // 
             // MainMenu
             // 
@@ -110,6 +138,10 @@ namespace DeviceRental
             this.tabControl1.ResumeLayout(false);
             this.tabDeviceRental.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeviceRental)).EndInit();
+            this.tabEmployee.ResumeLayout(false);
+            this.tabDevice.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDevice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -122,6 +154,8 @@ namespace DeviceRental
         private System.Windows.Forms.TabPage tabEmployee;
         private System.Windows.Forms.TabPage tabDevice;
         private System.Windows.Forms.DataGridView dgvDeviceRental;
+        private System.Windows.Forms.DataGridView dgvEmployee;
+        private System.Windows.Forms.DataGridView dgvDevice;
     }
 }
 
