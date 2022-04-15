@@ -1,15 +1,7 @@
-﻿using DeviceRental.Database;
-using DeviceRental.Infrastructure;
-using DeviceRental.Repositories;
+﻿using Autofac;
+using DeviceRental.Handler;
+using DeviceRental.Handler.ModelHandles;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DeviceRental
@@ -17,15 +9,13 @@ namespace DeviceRental
     public partial class DeviceRentalDetail : Form
     {
         private readonly Models.DeviceRental _deviceRental;
-        private readonly IDeviceRentalRepository _deviceRentalRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly HandlerRegister _handlerRegister;
 
-        public DeviceRentalDetail(Models.DeviceRental deviceRental, IDeviceRentalRepository deviceRentalRepository, IUnitOfWork unitOfWork)
+        public DeviceRentalDetail(Models.DeviceRental deviceRental)
         {
             InitializeComponent();
             _deviceRental = deviceRental;
-            _deviceRentalRepository = deviceRentalRepository;
-            _unitOfWork = unitOfWork;
+            _handlerRegister = Program.Container.Resolve<HandlerRegister>();
         }
 
         private void DeviceRentalDetail_Load(object sender, EventArgs e)
@@ -52,11 +42,8 @@ namespace DeviceRental
 
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
-            var data = await _deviceRentalRepository.GetSingleByCondition(x => x.DeviceId == _deviceRental.DeviceId && x.EmployeeId == _deviceRental.EmployeeId);
-            data.EndDate = _deviceRental.EndDate;
-            _deviceRentalRepository.Update(data);
-            _deviceRentalRepository.DbContext.SaveChanges();
-            //_unitOfWork.Commit();
+            var data = await _handlerRegister.Send(new UpdateDeviceCommand() { DeviceRental = _deviceRental });
+
             this.Close();
             MessageBox.Show("Data was changed");
         }

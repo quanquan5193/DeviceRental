@@ -1,12 +1,10 @@
 ﻿using Autofac;
 using DeviceRental.Database;
+using DeviceRental.Handler;
 using DeviceRental.Infrastructure;
 using DeviceRental.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DeviceRental
@@ -23,18 +21,16 @@ namespace DeviceRental
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Container = ConfigAutofac();
-            Application.Run(new MainMenu(Container.Resolve<IDeviceRentalRepository>(),
-                Container.Resolve<IEmployeeRepository>(),
-                Container.Resolve<IDeviceRepository>(),
-                Container.Resolve<IUnitOfWork>()));
+            Application.Run(new MainMenu(Container.Resolve<HandlerRegister>()));
         }
 
         static IContainer ConfigAutofac()
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-            builder.RegisterType<DbFactory>().As<IDbFactory>();
+            builder.RegisterType<DbFactory>().As<IDbFactory>().SingleInstance();
             builder.RegisterType<ApplicationDbContext>().As<ApplicationDbContext>();
+            builder.RegisterType<HandlerRegister>().As<HandlerRegister>().SingleInstance();
 
             builder.RegisterAssemblyTypes(typeof(DeviceRentalRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))

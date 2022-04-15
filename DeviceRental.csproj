@@ -92,6 +92,13 @@
     <Compile Include="DeviceRentalDetail.Designer.cs">
       <DependentUpon>DeviceRentalDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Handler\HandlerRegister.cs" />
+    <Compile Include="Handler\ModelHandles\Queries\GetListDeviceQuery.cs" />
+    <Compile Include="Handler\ModelHandles\Queries\GetListDeviceRentalQuery.cs" />
+    <Compile Include="Handler\ModelHandles\ICommand.cs" />
+    <Compile Include="Handler\ModelHandles\Commands\UpdateDeviceCommand.cs" />
+    <Compile Include="Handler\ModelHandles\Queries\GetListEmployeeQuery.cs" />
+    <Compile Include="Handler\ResultObject.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>

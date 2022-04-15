@@ -1,21 +1,15 @@
-﻿using DeviceRental.Database;
-using DeviceRental.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DeviceRental.Infrastructure;
 
 namespace DeviceRental.Repositories
 {
     public interface IDeviceRentalRepository : IRepository<Models.DeviceRental>
     {
-        ApplicationDbContext DbContext { get; }
+        //ApplicationDbContext DbContext { get; }
     }
 
     public class DeviceRentalRepository : RepositoryBase<Models.DeviceRental>, IDeviceRentalRepository
     {
-        public new ApplicationDbContext DbContext { get => base.DbContext; }
+        //public new ApplicationDbContext DbContext { get => base.DbContext; }
         public DeviceRentalRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
