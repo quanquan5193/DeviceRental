@@ -42,10 +42,10 @@ namespace DeviceRental
 
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
-            var data = await _handlerRegister.Send(new UpdateDeviceCommand() { DeviceRental = _deviceRental });
+            var data = await _handlerRegister.Send(new UpdateDeviceRentalCommand() { DeviceRental = _deviceRental });
 
             this.Close();
-            MessageBox.Show("Data was changed");
+            MessageBox.Show(Common.Common.Success);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

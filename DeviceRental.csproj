@@ -85,25 +85,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Common.cs" />
-    <Compile Include="Database\ApplicationDbContext.cs" />
-    <Compile Include="DeviceRentalDetail.cs">
+    <Compile Include="Common\MenuHelper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\MenuHelper.Designer.cs">
+      <DependentUpon>MenuHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\ModelHandles\Commands\Device\CreateDeviceCommand.cs" />
+    <Compile Include="Handler\ModelHandles\Commands\Device\DeleteDeviceCommand.cs" />
+    <Compile Include="Handler\ModelHandles\Commands\Device\UpdateDeviceCommand.cs" />
+    <Compile Include="UI\ControlMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeviceRentalDetail.Designer.cs">
+    <Compile Include="UI\ControlMenu.Designer.cs">
+      <DependentUpon>ControlMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ApplicationDbContext.cs" />
+    <Compile Include="UI\DeviceDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DeviceDetail.Designer.cs">
+      <DependentUpon>DeviceDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DeviceRentalDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DeviceRentalDetail.Designer.cs">
       <DependentUpon>DeviceRentalDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Handler\HandlerRegister.cs" />
     <Compile Include="Handler\ModelHandles\Queries\GetListDeviceQuery.cs" />
-    <Compile Include="Handler\ModelHandles\Queries\GetListDeviceRentalQuery.cs" />
+    <Compile Include="Handler\ModelHandles\Queries\DeviceRental\GetListDeviceRentalQuery.cs" />
     <Compile Include="Handler\ModelHandles\ICommand.cs" />
-    <Compile Include="Handler\ModelHandles\Commands\UpdateDeviceCommand.cs" />
+    <Compile Include="Handler\ModelHandles\Commands\DeviceRemtal\UpdateDeviceRentalCommand.cs" />
     <Compile Include="Handler\ModelHandles\Queries\GetListEmployeeQuery.cs" />
     <Compile Include="Handler\ResultObject.cs" />
-    <Compile Include="MainMenu.cs">
+    <Compile Include="UI\DeviceRentalView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenu.Designer.cs">
-      <DependentUpon>MainMenu.cs</DependentUpon>
+    <Compile Include="UI\DeviceRentalView.Designer.cs">
+      <DependentUpon>DeviceRentalView.cs</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
@@ -126,11 +147,32 @@
     <Compile Include="Repositories\DeviceRentalRepository.cs" />
     <Compile Include="Repositories\DeviceRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
-    <EmbeddedResource Include="DeviceRentalDetail.resx">
+    <Compile Include="UI\DeviceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DeviceView.Designer.cs">
+      <DependentUpon>DeviceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EmployeeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EmployeeView.Designer.cs">
+      <DependentUpon>EmployeeView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Common\MenuHelper.resx">
+      <DependentUpon>MenuHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ControlMenu.resx">
+      <DependentUpon>ControlMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DeviceDetail.resx">
+      <DependentUpon>DeviceDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DeviceRentalDetail.resx">
       <DependentUpon>DeviceRentalDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
+    <EmbeddedResource Include="UI\DeviceRentalView.resx">
+      <DependentUpon>DeviceRentalView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204130402199_InitDatabase.resx">
       <DependentUpon>202204130402199_InitDatabase.cs</DependentUpon>
@@ -144,6 +186,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\DeviceView.resx">
+      <DependentUpon>DeviceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EmployeeView.resx">
+      <DependentUpon>EmployeeView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

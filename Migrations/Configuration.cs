@@ -2,7 +2,7 @@
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DeviceRental.Database.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<global::DeviceRental.Database.ApplicationDbContext>
     {
         public Configuration()
         {
@@ -10,7 +10,7 @@
             CommandTimeout = 10;
         }
 
-        protected override void Seed(DeviceRental.Database.ApplicationDbContext context)
+        protected override void Seed(global::DeviceRental.Database.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

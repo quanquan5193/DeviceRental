@@ -21,7 +21,7 @@ namespace DeviceRental
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Container = ConfigAutofac();
-            Application.Run(new MainMenu(Container.Resolve<HandlerRegister>()));
+            Application.Run(new ControlMenu());
         }
 
         static IContainer ConfigAutofac()
@@ -36,7 +36,8 @@ namespace DeviceRental
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces();
 
-            builder.RegisterType<MainMenu>();
+            builder.RegisterType<DeviceRentalView>();
+            builder.RegisterType<ControlMenu>();
             return builder.Build();
         }
     }

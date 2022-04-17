@@ -1,4 +1,5 @@
 ﻿using DeviceRental.Handler.ModelHandles;
+using DeviceRental.Handler.ModelHandles.Commands.Device;
 using DeviceRental.Handler.ModelHandles.Queries;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,10 @@ namespace DeviceRental.Handler
                 { typeof(GetListDeviceRentalQuery),  new GetListDeviceRentalQueryHandler().Handle},
                 { typeof(GetListDeviceQuery),  new GetListDeviceQueryHandler().Handle},
                 { typeof(GetListEmployeeQuery),  new GetListEmployeeQueryHandler().Handle},
-                { typeof(UpdateDeviceCommand),  new UpdateDeviceCommandHandler().Handle}
+                { typeof(UpdateDeviceRentalCommand),  new UpdateDeviceRentalCommandHandler().Handle},
+                { typeof(UpdateDeviceCommand),  new UpdateDeviceCommandHandler().Handle},
+                { typeof(CreateDeviceCommand),  new CreateDeviceCommandHandler().Handle},
+                { typeof(DeleteDeviceCommand),  new DeleteDeviceCommandHandler().Handle}
             };
         }
 

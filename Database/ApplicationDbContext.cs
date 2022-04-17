@@ -18,7 +18,7 @@ namespace DeviceRental.Database
 
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
-        public virtual DbSet<DeviceRental.Models.DeviceRental> DeviceRentals { get; set; }
+        public virtual DbSet<global::DeviceRental.Models.DeviceRental> DeviceRentals { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

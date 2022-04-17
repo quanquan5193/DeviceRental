@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace DeviceRental.Handler.ModelHandles
 {
-    public class UpdateDeviceCommand : ICommand
+    public class UpdateDeviceRentalCommand : ICommand
     {
         public Models.DeviceRental DeviceRental { get; set; }
     }
 
-    public class UpdateDeviceCommandHandler
+    public class UpdateDeviceRentalCommandHandler
     {
         private readonly IDeviceRentalRepository _deviceRentalRepository;
         private IUnitOfWork _unitOfWork;
 
-        public UpdateDeviceCommandHandler()
+        public UpdateDeviceRentalCommandHandler()
         {
             _deviceRentalRepository = Program.Container.Resolve<IDeviceRentalRepository>();
             _unitOfWork = Program.Container.Resolve<IUnitOfWork>();
@@ -23,7 +23,7 @@ namespace DeviceRental.Handler.ModelHandles
 
         public async Task<ResultObject> Handle(ICommand command)
         {
-            var updateDeviceCommand = command as UpdateDeviceCommand;
+            var updateDeviceCommand = command as UpdateDeviceRentalCommand;
 
             var deviceRental = await _deviceRentalRepository.
                 GetSingleByCondition(x => x.DeviceId == updateDeviceCommand.DeviceRental.DeviceId
