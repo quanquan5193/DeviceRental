@@ -21,6 +21,7 @@ namespace DeviceRental
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Container = ConfigAutofac();
+            log4net.Config.XmlConfigurator.Configure();
             Application.Run(new ControlMenu());
         }
 

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DeviceRental.Common;
 using DeviceRental.Handler;
 using DeviceRental.Handler.ModelHandles.Queries;
 using System;
@@ -19,12 +20,20 @@ namespace DeviceRental.UI
 
         private async void EmployeeView_Load(object sender, EventArgs e)
         {
-            var employees = (await _handlerRegister.Send(new GetListEmployeeQuery())).Result as IEnumerable<Models.Employee>;
+            try
+            {
+                var employees = (await _handlerRegister.Send(new GetListEmployeeQuery())).Result as IEnumerable<Models.Employee>;
 
-            // Employee view
-            dgvEmployee.DataSource = employees;
-            dgvEmployee.Columns[nameof(Models.Employee.Id)].Visible = false;
-            dgvEmployee.Columns[nameof(Models.Employee.DeviceRentals)].Visible = false;
+                // Employee view
+                dgvEmployee.DataSource = employees;
+                dgvEmployee.Columns[nameof(Models.Employee.Id)].Visible = false;
+                dgvEmployee.Columns[nameof(Models.Employee.DeviceRentals)].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"{Common.Common.GetCurrentMethod()}: {ex.Message})");
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

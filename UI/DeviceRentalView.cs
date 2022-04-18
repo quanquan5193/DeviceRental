@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DeviceRental.Common;
 using DeviceRental.Handler;
 using DeviceRental.Handler.ModelHandles.Queries;
 using System;
@@ -20,12 +21,19 @@ namespace DeviceRental
 
         private async void DeviceRentalView_Load(object sender, EventArgs e)
         {
-            var deviceRentals = (await _handlerRegister.Send(new GetListDeviceRentalQuery())).Result as IEnumerable<Models.DeviceRental>;
+            try
+            {
+                var deviceRentals = (await _handlerRegister.Send(new GetListDeviceRentalQuery())).Result as IEnumerable<Models.DeviceRental>;
 
-            // Device Rental view
-            dgvDeviceRental.DataSource = deviceRentals;
-            dgvDeviceRental.Columns[nameof(Models.DeviceRental.Device)].Visible = false;
-            dgvDeviceRental.Columns[nameof(Models.DeviceRental.Employee)].Visible = false;
+                // Device Rental view
+                dgvDeviceRental.DataSource = deviceRentals;
+                dgvDeviceRental.Columns[nameof(Models.DeviceRental.Device)].Visible = false;
+                dgvDeviceRental.Columns[nameof(Models.DeviceRental.Employee)].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"{Common.Common.GetCurrentMethod()}: {ex.Message})");
+            }
         }
 
         private void dgvDeviceRental_CellContentClick(object sender, DataGridViewCellEventArgs e)

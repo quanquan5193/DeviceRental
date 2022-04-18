@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DeviceRental.Common;
 using DeviceRental.Handler;
 using DeviceRental.Handler.ModelHandles;
 using System;
@@ -20,17 +21,24 @@ namespace DeviceRental
 
         private void DeviceRentalDetail_Load(object sender, EventArgs e)
         {
-            txtDevice.Text = _deviceRental.Device.DeviceName;
-            txtEmployee.Text = _deviceRental.Employee.Name;
-            dpkStartDate.Value = _deviceRental.StartDate;
-            if (!_deviceRental.EndDate.HasValue)
+            try
             {
-                dpkEndDate.Format = DateTimePickerFormat.Custom;
-                dpkEndDate.CustomFormat = " ";
+                txtDevice.Text = _deviceRental.Device.DeviceName;
+                txtEmployee.Text = _deviceRental.Employee.Name;
+                dpkStartDate.Value = _deviceRental.StartDate;
+                if (!_deviceRental.EndDate.HasValue)
+                {
+                    dpkEndDate.Format = DateTimePickerFormat.Custom;
+                    dpkEndDate.CustomFormat = " ";
+                }
+                else
+                {
+                    dpkEndDate.Value = _deviceRental.EndDate ?? DateTime.Now;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dpkEndDate.Value = _deviceRental.EndDate ?? DateTime.Now;
+                Log.Error($"{Common.Common.GetCurrentMethod()}: {ex.Message})");
             }
         }
 
@@ -42,15 +50,31 @@ namespace DeviceRental
 
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
-            var data = await _handlerRegister.Send(new UpdateDeviceRentalCommand() { DeviceRental = _deviceRental });
+            try
+            {
+                Log.Info($"{Common.Common.GetCurrentMethod()}: Start update Device Rental");
+                var data = await _handlerRegister.Send(new UpdateDeviceRentalCommand() { DeviceRental = _deviceRental });
 
-            this.Close();
-            MessageBox.Show(Common.Common.Success);
+                Close();
+                MessageBox.Show(Common.Common.Success);
+                if (data.IsSuccess)
+                {
+                    Log.Info($"{Common.Common.GetCurrentMethod()}: Complete update Device Rental");
+                }
+                else
+                {
+                    Log.Error($"{Common.Common.GetCurrentMethod()}: Failed to update Device Rental");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"{Common.Common.GetCurrentMethod()}: {ex.Message})");
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DeviceRental.Common;
 using DeviceRental.Handler;
 using DeviceRental.Handler.ModelHandles.Queries;
 using System;
@@ -20,12 +21,19 @@ namespace DeviceRental.UI
 
         private async void DeviceView_Load(object sender, EventArgs e)
         {
-            var devices = (await _handlerRegister.Send(new GetListDeviceQuery())).Result as IEnumerable<Models.Device>;
+            try
+            {
+                var devices = (await _handlerRegister.Send(new GetListDeviceQuery())).Result as IEnumerable<Models.Device>;
 
-            // Device view
-            dgvDevice.DataSource = devices;
-            dgvDevice.Columns[nameof(Models.Device.Id)].Visible = false;
-            dgvDevice.Columns[nameof(Models.Device.DeviceRentals)].Visible = false;
+                // Device view
+                dgvDevice.DataSource = devices;
+                dgvDevice.Columns[nameof(Models.Device.Id)].Visible = false;
+                dgvDevice.Columns[nameof(Models.Device.DeviceRentals)].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"{Common.Common.GetCurrentMethod()}: {ex.Message})");
+            }
         }
 
         private void dgvDevice_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -39,6 +47,7 @@ namespace DeviceRental.UI
             }
             catch (Exception ex)
             {
+                Log.Error($"{Common.Common.GetCurrentMethod()}: {ex.Message})");
                 MessageBox.Show(ex.Message);
             }
         }
@@ -51,8 +60,9 @@ namespace DeviceRental.UI
                 detail.FormClosed += DeviceView_Load;
                 detail.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                Log.Error($"{Common.Common.GetCurrentMethod()}: {ex.Message})");
                 MessageBox.Show(ex.Message);
             }
         }

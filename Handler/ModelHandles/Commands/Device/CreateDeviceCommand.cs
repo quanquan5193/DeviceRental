@@ -1,10 +1,7 @@
 ﻿using Autofac;
+using DeviceRental.Common;
 using DeviceRental.Infrastructure;
 using DeviceRental.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DeviceRental.Handler.ModelHandles.Commands.Device
@@ -27,6 +24,7 @@ namespace DeviceRental.Handler.ModelHandles.Commands.Device
 
         public async Task<ResultObject> Handle(ICommand command)
         {
+            Log.Info($"{Common.Common.GetCurrentMethod()}: Start create Device");
             var createDeviceCommand = command as CreateDeviceCommand;
             _deviceRepository.Add(createDeviceCommand.Device);
 

@@ -1,10 +1,7 @@
 ﻿using Autofac;
 using DeviceRental.Infrastructure;
 using DeviceRental.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DeviceRental.Handler.ModelHandles.Commands.Device
@@ -29,7 +26,7 @@ namespace DeviceRental.Handler.ModelHandles.Commands.Device
         {
             var reuslt = new ResultObject();
             var deleteDeviceCommand = command as DeleteDeviceCommand;
-            var device = await _deviceRepository.GetSingleByCondition(x=>x.Id == deleteDeviceCommand.Id, new string[] { "DeviceRentals" });
+            var device = await _deviceRepository.GetSingleByCondition(x => x.Id == deleteDeviceCommand.Id, new string[] { "DeviceRentals" });
             if (device.DeviceRentals.Any())
             {
                 return reuslt;

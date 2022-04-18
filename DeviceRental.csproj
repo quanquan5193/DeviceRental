@@ -45,6 +45,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.14.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.14\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -56,6 +59,7 @@
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -73,6 +77,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\Log.cs" />
     <Compile Include="Common\MenuHelper.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,8 @@
     <Compile Include="Handler\ModelHandles\Commands\Device\CreateDeviceCommand.cs" />
     <Compile Include="Handler\ModelHandles\Commands\Device\DeleteDeviceCommand.cs" />
     <Compile Include="Handler\ModelHandles\Commands\Device\UpdateDeviceCommand.cs" />
+    <Compile Include="Handler\ModelHandles\Queries\Device\GetListDeviceQuery.cs" />
+    <Compile Include="Handler\ModelHandles\Queries\Employee\GetListEmployeeQuery.cs" />
     <Compile Include="UI\ControlMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,11 +122,9 @@
       <DependentUpon>DeviceRentalDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Handler\HandlerRegister.cs" />
-    <Compile Include="Handler\ModelHandles\Queries\GetListDeviceQuery.cs" />
     <Compile Include="Handler\ModelHandles\Queries\DeviceRental\GetListDeviceRentalQuery.cs" />
     <Compile Include="Handler\ModelHandles\ICommand.cs" />
     <Compile Include="Handler\ModelHandles\Commands\DeviceRemtal\UpdateDeviceRentalCommand.cs" />
-    <Compile Include="Handler\ModelHandles\Queries\GetListEmployeeQuery.cs" />
     <Compile Include="Handler\ResultObject.cs" />
     <Compile Include="UI\DeviceRentalView.cs">
       <SubType>Form</SubType>
@@ -206,7 +212,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -73,8 +73,8 @@ namespace DeviceRental
 
         private void ControlMenu_Load(object sender, EventArgs e)
         {
-            this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(menuHelper1_KeyDown);
+            KeyPreview = true;
+            KeyDown += new KeyEventHandler(menuHelper1_KeyDown);
         }
     }
 }
